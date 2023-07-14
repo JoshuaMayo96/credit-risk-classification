@@ -2,30 +2,43 @@
 
 ## Overview of the Analysis
 
-In this section, describe the analysis you completed for the machine learning models used in this Challenge. This might include:
+Introduction:
+Lending companies provide loans to borrowers, aiming for asset return or loan repayment. However, the risk of borrowers defaulting on loans, known as credit risk, can cause financial losses to lenders. In this analysis, I employ machine learning techniques to analyze a dataset from a peer-to-peer lending services company. The goal is to build a model that accurately predicts the creditworthiness of borrowers.
 
-* Explain the purpose of the analysis.
-* Explain what financial information the data was on, and what you needed to predict.
-* Provide basic information about the variables you were trying to predict (e.g., `value_counts`).
-* Describe the stages of the machine learning process you went through as part of this analysis.
-* Briefly touch on any methods you used (e.g., `LogisticRegression`, or any resampling method).
+Methodology:
+A dataset of historical lending activity was provided by the lending company to train the model. 
+
+For this analysis, I eomplyed the Logistic Regression algorithm as it is widely employed in predicting target variables for classification problems. To begin the analysis, it was crucial to assess the balance/imbalance within the dataset. I did this by using the value_counts function. From there, I could gain an image of the number of high-risk loans to low-risk loans. 
+
+
 
 ## Results
 
-Using bulleted lists, describe the balanced accuracy scores and the precision and recall scores of all machine learning models.
+Logistic Regression Model with Imbalanced Data:
+    * Out of the 18,765 loan status's that are healthy (low-risk), the model predicted 18,663 as healthy correctly and 102 as healthy incorrectly.
+    * Out of the 619 loan status's that are non-healthy (high-risk), the model predicted 563 as non-healthy correctly and 56 as non-healthy incorrectly.
+    * The model correctly predicted healthy loans 100% of the time, and non-healthy loans at 85% of the time.
+    * Accuracy: The model achieved an accuracy score of 95%.
+    * Performance: The model exhibited higher recall (99%) for healthy loans (low-risk) but lower recall (91%) for non-healthy loans (high-risk).
+    * Imbalanced Dataset: The dataset had a significant class imbalance, with healthy loans (75,036) greatly outnumbering non-healthy loans (2,500).
+    * This model trained on imbalanced data is more prone to the following errors:
+        * Misclassifying a healthy loan (low-risk) as a non-healthy loan (high-risk).
+        * Misclassifying a non-healthy loan (high-risk) as a healthy loan (low-risk).
 
-* Machine Learning Model 1:
-  * Description of Model 1 Accuracy, Precision, and Recall scores.
+
+Logistic Regression Model with Balanced (Oversampled) Data:
+    * Out of the 18,765 loan status's that are healthy (low-risk), the model predicted 18,649 as healthy correctly and 116 as healthy incorrectly.
+    * Out of the 619 loan status's that are non-healthy (high-risk), the model predicted 615 as non-healthy correctly and 4 as non-healthy incorrectly.
+    * The model correctly predicted healthy loans 100% of the time, and non-healthy loans at 84% of the time.
+    * Accuracy: The model achieved an accuracy score of 99%, surpassing the model with imbalanced data.
+    * Improved Performance: By oversampling the non-healthy loans, the model's recall for non-healthy loans increased to 99%.
+    * Balanced Dataset: The oversampling technique created a balanced dataset (56,271 to 56,271), enhancing the model's ability to predict non-healthy loans accurately.
+    * This model trained on balanced (oversampled) data is much less prone to the following errors:
+        * Misclassifying a healthy loan (low-risk) as a non-healthy loan (high-risk).
+        * Misclassifying a non-healthy loan (high-risk) as a healthy loan (low-risk).
 
 
-
-* Machine Learning Model 2:
-  * Description of Model 2 Accuracy, Precision, and Recall scores.
 
 ## Summary
 
-Summarize the results of the machine learning models, and include a recommendation on the model to use, if any. For example:
-* Which one seems to perform best? How do you know it performs best?
-* Does performance depend on the problem we are trying to solve? (For example, is it more important to predict the `1`'s, or predict the `0`'s? )
-
-If you do not recommend any of the models, please justify your reasoning.
+Based on the analysis, we recommend using the Logistic Regression model fitted with balanced (oversampled) data. This model exhibited higher accuracy and significantly improved recall for non-healthy loans, reducing the possibility of misclassifying high-risk loans as low-risk. By adopting this model, lending companies can minimize potential losses by identifying non-healthy loans more effectively.
